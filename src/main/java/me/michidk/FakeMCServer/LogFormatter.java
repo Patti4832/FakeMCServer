@@ -1,4 +1,4 @@
-package me.michidk.FakeMCServer;
+package main.java.me.michidk.FakeMCServer;
 
 import java.text.SimpleDateFormat;
 import java.util.logging.Formatter;
