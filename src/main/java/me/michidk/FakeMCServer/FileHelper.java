@@ -1,4 +1,4 @@
-package me.michidk.FakeMCServer;
+package main.java.me.michidk.FakeMCServer;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
