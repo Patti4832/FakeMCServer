@@ -1,10 +1,6 @@
-package me.michidk.FakeMCServer;
+package main.java.me.michidk.FakeMCServer;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
@@ -44,6 +40,8 @@ public class ResponderThread extends Thread
         this.thread = Thread.currentThread();
         boolean showMotd = false;
         int protocol = 5;
+
+        boolean startReal = false;
 
         try
         {
@@ -87,6 +85,9 @@ public class ResponderThread extends Thread
                                     "Server is currently stopped, sorry." : Main.kickMessage;
                             writeData("{text:\""+kickMsg+"\", color: white}");
                             Main.log.info("kick: "+this.remoteHost+" - "+kickMsg);
+
+                            startReal = true;
+
                             return;
                         }
                     }
@@ -142,6 +143,42 @@ public class ResponderThread extends Thread
         finally
         {
             closeSocket();
+
+            try {
+                sleep(1000);
+            }catch(Exception e){
+                //Eat it
+            }
+
+            if(startReal){
+                //--------Start start.sh script-----------------
+                try {
+                    Main.server.close();
+                }catch (Exception e){
+                    System.out.println("Couldn't stop socket");
+                }
+
+                String[] files = {"./start.sh","start.bat"};
+                for(String file : files) {
+                    File f = new File(file);
+                    if (f.exists() && !f.isDirectory()) {
+                        Runtime run = Runtime.getRuntime();
+                        try {
+                            Process pr = null;
+                            if(file.startsWith("./")) {
+                                pr = run.exec(file);
+                            }else{
+                                pr = run.exec("cmd /c start \"\" " + file);
+                            }
+                            pr.waitFor();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                //----------------------------------------------
+            }
+
             this.thread = null;
         }
     }
