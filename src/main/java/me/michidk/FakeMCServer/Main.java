@@ -1,4 +1,4 @@
-package me.michidk.FakeMCServer;
+package main.java.me.michidk.FakeMCServer;
 
 import java.io.Closeable;
 import java.io.File;
@@ -280,9 +280,13 @@ public class Main
 
             while(!server.isClosed())
             {
-                new ResponderThread(
-                    server.accept()
-                ).start();
+                try {
+                    new ResponderThread(
+                            server.accept()
+                    ).start();
+                }catch (Exception e){
+                    log.warning("Socket accept error");
+                }
             }
 
         }
