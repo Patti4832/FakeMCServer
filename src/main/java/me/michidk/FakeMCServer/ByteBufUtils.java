@@ -1,4 +1,4 @@
-package me.michidk.FakeMCServer;
+package main.java.me.michidk.FakeMCServer;
 
 /*
  * This file is part of Flow Networking, licensed under the MIT License (MIT).
