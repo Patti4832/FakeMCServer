@@ -1,6 +1,15 @@
 FakeMCServer
 ============
 
+Original by michidk
+
+Modified by Patti4832
+
+Modifications:
+- You can now start "start.bat" or "start.sh" scripts if someone tries to join (simply add the start script to the same directory)
+
+Original Readme
+=======
 A Fake MinecraftServer, that shows the following messages:
 * motd
 * version
@@ -23,4 +32,5 @@ Have fun ;)
 
 ##NOTE
 I don't maintain this project anymore. Feel free to fork or and update your this project.<br />
-If you want to maintain and update this repo, just make a pull request and write me an email to michidk@live.de.
+If you want to maintain and update this repo, just make a pull request and write me an email to @live.de.
+======
